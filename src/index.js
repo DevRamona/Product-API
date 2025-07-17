@@ -1,19 +1,24 @@
-import express, { Application, Request, Response, NextFunction } from 'express';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import cors from 'cors';
+const express = require('express');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const cors = require('cors');
 
 dotenv.config();
 
-const app: Application = express();
+const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
 
-app.get('/', (req: Request, res: Response) => {
+const categoryRoutes = require('./routes/categoryRoutes');
+app.use('/api/categories', categoryRoutes);
+
+app.get('/', (req, res) => {
   res.send('Product Catalog API is running');
 });
+const productRoutes = require('./routes/productRoutes');
+app.use('/api/products', productRoutes);
 
 const MONGO_URI = process.env.MONGO_URI || '';
 
