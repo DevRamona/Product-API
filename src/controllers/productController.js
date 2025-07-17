@@ -47,4 +47,38 @@ exports.deleteProduct = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
+};
+
+exports.searchProducts = async (req, res, next) => {
+  try {
+    const { name, category, minPrice, maxPrice, startDate, endDate } = req.query;
+    const filter = {};
+    if (name) filter.name = { $regex: name, $options: 'i' };
+    if (category) filter.category = category;
+    if (minPrice || maxPrice) filter.price = {};
+    if (minPrice) filter.price.$gte = Number(minPrice);
+    if (maxPrice) filter.price.$lte = Number(maxPrice);
+    if (startDate || endDate) filter.createdAt = {};
+    if (startDate) filter.createdAt.$gte = new Date(startDate);
+    if (endDate) filter.createdAt.$lte = new Date(endDate);
+    const products = await Product.find(filter).populate('category');
+    res.json(products);
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.getLowStockProducts = async (req, res, next) => {
+  try {
+    const threshold = Number(req.query.threshold) || 5;
+    const products = await Product.find({
+      $or: [
+        { 'variants.stock': { $lt: threshold } },
+        { variants: { $size: 0 }, stock: { $lt: threshold } }
+      ]
+    }).populate('category');
+    res.json(products);
+  } catch (err) {
+    next(err);
+  }
 }; 
