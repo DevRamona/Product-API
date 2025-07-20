@@ -106,21 +106,6 @@ Server will run at `http://localhost:5000` by default.
 | GET    | `/api/products/search`    | Search/filter products            |
 | GET    | `/api/products/low-stock` | Get products with low stock       |
 
-#### Product Model Example
-
-```json
-{
-  "name": "T-Shirt",
-  "description": "Comfortable cotton t-shirt",
-  "category": "category_id",
-  "price": 19.99,
-  "discount": 10,
-  "variants": [
-    { "size": "M", "color": "Red", "stock": 5 },
-    { "size": "L", "color": "Blue", "stock": 2 }
-  ]
-}
-```
 
 ### Category Endpoints
 
@@ -132,16 +117,6 @@ Server will run at `http://localhost:5000` by default.
 | PUT    | `/api/categories/:id`     | Update category by ID             |
 | DELETE | `/api/categories/:id`     | Delete category by ID             |
 
-#### Category Model Example
-
-```json
-{
-  "name": "Clothing",
-  "description": "Apparel and accessories"
-}
-```
-
----
 
 ## Error Handling
 
@@ -151,25 +126,6 @@ Server will run at `http://localhost:5000` by default.
 
 ---
 
-## Assumptions & Limitations
 
-- No authentication/authorization is implemented.
-- Discounts are simple percentage values (0-100).
-- Product variants are limited to size, color, and stock.
-- No image upload or advanced reporting.
-- Designed for demonstration/educational purposes.
-
----
-
-## Testing
-
-- Use [Postman](https://www.postman.com/) or [Insomnia](https://insomnia.rest/) to test endpoints.
-- Example requests and responses are available in Swagger UI.
-
----
-
-## Video Walkthrough
-
-> Please see the attached video file in the project root for a demonstration of API functionality and tests.
 
 
