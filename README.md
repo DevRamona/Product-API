@@ -91,6 +91,9 @@ Server will run at `http://localhost:5000` by default.
   Visit [http://localhost:5000/api-docs](http://localhost:5000/api-docs) after starting the server for interactive API documentation.
 
 ---
+## Video link
+Youtube link: https://www.youtube.com/watch?v=zqEb8xw4KWg
+
 
 ## Endpoints Overview
 
